@@ -4,27 +4,48 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/*
+ * Teshi Waruingi
+ * 
+ * 
+ */
 
 
 public class IntegerSet  {
 	// Hint: probably best to use an array list.  You will need to do a little research
+	/***
+	 * to hold elements of set in an ArrayList object
+	 * 
+	 */
 	private List<Integer> set = new ArrayList<Integer>();
 
-	// Default Constructor
+	/**
+	 * Declares empty set
+	 */
 	public IntegerSet() {
 		this.set=new ArrayList<Integer>();
 		}
 
-// Clears the internal representation of the set
+/**
+ * 
+ * empties the set
+ * */
 public void clear() {set.clear();};
 
-// Returns the length of the set
+/**
+ * 
+ * @return num of elements in set
+ * 
+ * */
+
 public int length() {return set.size();}; // returns the length
 
-/*
-              * Returns true if the 2 sets are equal, false otherwise;
+/**
+ * Returns true if the 2 sets are equal, false otherwise;
  * Two sets are equal if they contain all of the same values in ANY order.
+ * @param b is the second set that be compared
+ * @return true if set is equal to b
+ * @return false otherwise
 */
 public boolean equals(IntegerSet b) {
 	
@@ -41,8 +62,8 @@ public boolean equals(IntegerSet b) {
 	Collections.sort(temp1);
 	Collections.sort(temp2);
 
-	for(int i=0;i<temp1.size();i++) {
-	if(temp1.get(i)!=temp2.get(i)) {
+	for(int j=0;j<temp1.size();j++) {
+	if(temp1.get(j)!=temp2.get(j)) {
 	return false;
 	}
 	}
@@ -52,9 +73,18 @@ public boolean equals(IntegerSet b) {
 }; 
 
 // Returns true if the set contains the value, otherwise false
+/**
+ * @return if set has a value true, otherwise false
+ * */
 public boolean contains(int value) {return this.set.contains(value);};    
 
 // Returns the largest item in the set; Throws a IntegerSetException if the set is empty 
+/**
+ * throws an expection if the set is empty
+ * @return largest element in the set
+ * 
+ * */
+
 public int largest() throws IntegerSetException {
 	
 	int currMax = Integer.MIN_VALUE;
@@ -65,9 +95,9 @@ public int largest() throws IntegerSetException {
 
 //		int currentMaximum=0;
 
-		for(int i=0;i<set.size();i++) {
-		if(set.get(i)>currMax) {
-			currMax=set.get(i);
+		for(int j=0;j<set.size();j++) {
+		if(set.get(j)>currMax) {
+			currMax=set.get(j);
 		}
 		}
 
@@ -76,6 +106,11 @@ public int largest() throws IntegerSetException {
 }; 
 
 // Returns the smallest item in the set; Throws a IntegerSetException if the set is empty
+/**
+ * throws an expection if the set is empty
+ * @return smallest element in the set
+ * 
+ * */
 public int smallest() throws IntegerSetException {
 	
 	if(set.size()==0) {
@@ -85,9 +120,9 @@ public int smallest() throws IntegerSetException {
 
 		int currMin=Integer.MAX_VALUE;
 
-		for(int i=0;i<set.size();i++) {
-		if(set.get(i)<currMin) {
-			currMin=set.get(i);
+		for(int j=0;j<set.size();j++) {
+		if(set.get(j)<currMin) {
+			currMin=set.get(j);
 		}
 		}
 
@@ -97,12 +132,15 @@ public int smallest() throws IntegerSetException {
 };
 
 	// Adds an item to the set or does nothing it already there	
+/**
+ * @param item is added to the set
+ * */
  	public void add(int item) {
  		boolean exist=false;
 
- 		for(int i=0;i<set.size();i++) {
+ 		for(int j=0;j<set.size();j++) {
 
- 		if(set.get(i)==item) {
+ 		if(set.get(j)==item) {
  		exist=true;
  		}
  		}
@@ -115,67 +153,88 @@ public int smallest() throws IntegerSetException {
  	}; // adds item to the set or does nothing if it is in set
 
 	// Removes an item from the set or does nothing if not there
+ 	
+ 	/**
+ 	 * @param item is remove to the set
+ 	 * */
 public void remove(int item) {
 
-	for(int i=0;i<set.size();i++) {
+	for(int j=0;j<set.size();j++) {
 	
-	if(set.get(i)==item) {
-	set.remove(i);
+	if(set.get(j)==item) {
+	set.remove(j);
 	}
 	}
 
 }; 
 
 // Set union
+/**
+ * @param intSetb the second set a union will form with, combining all elements
+ * */
 public void union(IntegerSet intSetb) {
 	
-	List<Integer> numbersToAdd= new ArrayList<Integer>();
-	for (int i=0; i<intSetb.set.size(); i++) {
-		if (!this.set.contains(intSetb.set.get(i))) {
-			numbersToAdd.add(intSetb.set.get(i));
+	List<Integer> toUnite= new ArrayList<Integer>();
+	for (int j=0; j<intSetb.set.size(); j++) {
+		if (!this.set.contains(intSetb.set.get(j))) {
+			toUnite.add(intSetb.set.get(j));
 		}
 	}
-	for (int number: numbersToAdd) {
-		this.set.add(number);
+	for (int num: toUnite) {
+		this.set.add(num);
 	}
 };
 
 // Set intersection
+
+/**
+ * @param intSetb the second set an intersection will form with
+ * */
 public void intersect(IntegerSet intSetb) {
 
-	List<Integer> numbersToGo = new ArrayList<Integer>();
-	for (int i=0; i<this.set.size(); i++) {
-		if (!intSetb.set.contains(this.set.get(i))) {
-			numbersToGo.add(this.set.get(i));
+	List<Integer> toIntersect = new ArrayList<Integer>();
+	for (int j=0; j<this.set.size(); j++) {
+		if (!intSetb.set.contains(this.set.get(j))) {
+			toIntersect.add(this.set.get(j));
 		}
 	}
-	for (int number: numbersToGo) {
-		int numIdx = this.set.indexOf(number);
-		this.set.remove(numIdx);
+	for (int num: toIntersect) {
+		int index = this.set.indexOf(num);
+		this.set.remove(index);
 	}
 	
 }; 
 
-// Set difference, i.e., s1 –s2
+
+/**
+ * @param intSetb the second set a difference will be formed with
+ * */
 public void diff(IntegerSet intSetb){
 	List<Integer> numbersToGo = new ArrayList<Integer>();
-	for (int i=0; i<this.set.size(); i++) {
-		if (intSetb.set.contains(this.set.get(i))) {
-			numbersToGo.add(this.set.get(i));
+	for (int j=0; j<this.set.size(); j++) {
+		if (intSetb.set.contains(this.set.get(j))) {
+			numbersToGo.add(this.set.get(j));
 		}
 	}
-	for (int number: numbersToGo) {
-		int numIdx = this.set.indexOf(number);
-		this.set.remove(numIdx);
+	for (int num: numbersToGo) {
+		int index = this.set.indexOf(num);
+		this.set.remove(index);
 	}
-}; // set difference, i.e. s1 - s2
+}; 
 
 // Returns true if the set is empty, false otherwise
+/**
+ * @return true if set is empty
+ * 
+ * */
 boolean isEmpty() {
 	return this.set.size() == 0;
 }; 
 
 // Return String representation of your set
+/**
+ * returns string version of the set
+ * */
 public String toString() {return this.set.toString();};	// return String representation of your set
 }
 

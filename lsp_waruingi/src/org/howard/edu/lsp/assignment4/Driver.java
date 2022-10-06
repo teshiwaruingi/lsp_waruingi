@@ -1,6 +1,12 @@
 package org.howard.edu.lsp.assignment4;
-import java.util.*;
 
+/*
+ * Teshi Waruingi
+ * 
+ * 
+ */
+
+import java.util.*;
 
 
 public class Driver {
@@ -9,7 +15,6 @@ public class Driver {
 	
 
 
-		// make 2 instance of integerset class for implementation
 		IntegerSet set1= new IntegerSet();
 		IntegerSet set2= new IntegerSet();
 
